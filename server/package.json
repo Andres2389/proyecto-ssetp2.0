@@ -1,0 +1,7 @@
+{
+  "name": "sisconbit",
+  "version": "0.0.1",
+  "description": "api-web",
+  "main": "index.js",
+  "license": "MIT"
+}
