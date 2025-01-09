@@ -1,6 +1,6 @@
-const DB_USER = "andres2389"
-const DB_PASSWORD ="Vale1521"
-const DB_HOST = "ssetp.bdt1o.mongodb.net"
+const DB_USER = "sisconbit"
+const DB_PASSWORD ="Sisconbit1234"
+const DB_HOST = "cluster0.f1g6j.mongodb.net"
 
 const API_VERSION ="v1"
 const IP_SERVER ="localhost"
