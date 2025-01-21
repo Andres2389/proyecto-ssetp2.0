@@ -1,0 +1,78 @@
+@import "src/scss/index.scss";
+
+.auth {
+    background: linear-gradient(to bottom, #F5F5F5, #C9C9C9);  
+    background-size: cover;
+    height: 1000px;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 100px;
+    .logo{
+        width: 200px;
+        margin-bottom: 40px;
+    }
+
+
+&_forms{
+    width: 450px;
+    
+    
+}
+
+.ui.menu{
+    .item{
+        width: 50%;
+        justify-content: center;
+        background-color: #fff !important;
+        border-radius:  0.5px !important;
+        border-top: 5px solid $border-grey !important;
+        font-size: 18px;
+    }
+
+    .active {
+        font-weight: normal;
+        border-radius: 0 !important;
+        border-top-color: $primary !important;
+    }
+  }  
+}
+
+
+@media(max-width: 280px){
+    .auth{
+        width: 100%;
+    }
+
+    .auth_forms{
+        width: 250px;
+    }
+}
+@media(max-width: 320px){
+    .auth{
+        width: 100%;
+    }
+
+    .auth_forms{
+        width: 300px;
+    }
+}
+@media(max-width: 390px){
+    .auth{
+        width: 100%;
+    }
+
+    .auth_forms{
+        width: 250px;
+    }
+}
+@media(max-width: 500px){
+    .auth{
+        width: 100%;
+    }
+
+    .auth_forms{
+        width: 250px;
+    }
+}
