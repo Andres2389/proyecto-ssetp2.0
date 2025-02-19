@@ -8,9 +8,8 @@ use MoonShine\Providers\MoonShineApplicationServiceProvider;
 use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
-use MoonShine\Resources\MoonShineUserResource;
 use App\MoonShine\Resources\BitacorasResource;
-use MoonShine\Resources\MoonShineUserRoleResource;
+use App\MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
 use MoonShine\Pages\Page;
@@ -41,10 +40,9 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     {
         return [
             
-                MenuItem::make('Admins', new \Sweet1s\MoonshineRBAC\Resource\UserResource(), 'heroicons.outline.users'),
-                MenuItem::make('Roles', new \Sweet1s\MoonshineRBAC\Resource\RoleResource(), 'heroicons.outline.shield-exclamation'),
-                MenuItem::make('Permissions', new \Sweet1s\MoonshineRBAC\Resource\PermissionResource(), 'heroicons.outline.shield-exclamation'),
+                MenuItem::make('Administradores', new MoonShineUserResource(), 'heroicons.outline.users'),
                 MenuItem::make('Bitacoras', new BitacorasResource(),'heroicons.clipboard-document-check'),
+                
             //MenuItem::make('Documentation', 'https://moonshine-laravel.com/docs')
                // ->badge(fn() => 'Check')
                 //->blank(),

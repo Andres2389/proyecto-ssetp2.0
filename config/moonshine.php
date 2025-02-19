@@ -4,7 +4,8 @@ use MoonShine\Exceptions\MoonShineNotFoundException;
 use MoonShine\Forms\LoginForm;
 use MoonShine\Http\Middleware\Authenticate;
 use MoonShine\Http\Middleware\SecurityHeadersMiddleware;
-use MoonShine\Models\MoonshineUser;
+//use MoonShine\Models\MoonshineUser;
+use MoonShine\Permissions\Models\MoonshineUser;
 use App\MoonShine\MoonShineLayout;
 use MoonShine\Pages\ProfilePage;
 
@@ -12,7 +13,7 @@ return [
     'dir' => 'app/MoonShine',
     'namespace' => 'App\MoonShine',
 
-    'title' => env('MOONSHINE_TITLE', 'sisgebit'),
+    'title' => env('MOONSHINE_TITLE', 'ssetp'),
     'logo' => 'vendor/moonshine/logo.svg',
     'logo_small' => 'vendor/moonshine/logo.svg',
 
@@ -29,7 +30,7 @@ return [
 
     'use_migrations' => true,
     'use_notifications' => true,
-    'use_theme_switcher' => true,
+    'use_theme_switcher' => false,  
 
     'layout' => MoonShineLayout::class,
 
@@ -48,6 +49,7 @@ return [
         'css' => [
             'link_attributes' => [
                 'rel' => 'stylesheet',
+                
             ]
         ]
     ],
@@ -85,7 +87,7 @@ return [
         'providers' => [
             'moonshine' => [
                 'driver' => 'eloquent',
-                'model' => App\Models\User::class,
+                'model' => MoonshineUser::class,
             ],
         ],
         'pipelines' => [],
@@ -95,6 +97,7 @@ return [
         'ru',
         'es',
     ],
+    
 
     'global_search' => [
         // User::class
