@@ -24,6 +24,9 @@ use MoonShine\Fields\Select;
 use MoonShine\Fields\Date;
 use MoonShine\Components\MoonShineComponent;
 use MoonShine\Components\TableBuilder;
+use MoonShine\Metrics\ValueMetric;
+use MoonShine\Decorations\Column;
+use MoonShine\Decorations\Grid; 
 
 /**
  * @extends ModelResource<Bitacoras>
@@ -32,10 +35,88 @@ class BitacorasResource extends ModelResource
 {
     protected string $model = Bitacoras::class;
 
-    protected string $title = 'Bitacoras';
-
+    protected string $title = 'Etapa productiva';
+    protected bool $isAsync = true;
+    protected bool $editInModal = true;
     protected bool $createInModal = true;
     protected bool $columnSelection = true;
+
+    public function redirectAfterSave(): string
+    {
+        return '/';
+    }
+    
+    public function redirectAfterDelete(): string
+    {
+        return '/';
+    }
+
+    public function metrics(): array
+    {
+        $totalContratos = Bitacoras::whereJsonContains('tipo_alternativa', 'contrato de  aprendizaje')->count();
+        $totalAprendices = Bitacoras::count();
+        $totalPasantias = Bitacoras::whereJsonContains('tipo_alternativa', 'pasantia')->count();
+        $totalProyecto = Bitacoras::whereJsonContains('tipo_alternativa', 'proyecto productivo')->count();
+        $totalMonitorias = Bitacoras::whereJsonContains('tipo_alternativa', 'monitorias')->count();
+        $totalVinculos = Bitacoras::whereJsonContains('tipo_alternativa', 'vinculo laboral')->count();
+        return [
+            Grid::make([
+                
+ 
+                Column::make([
+                 ValueMetric::make('Aprendices totales')
+                 ->value($totalAprendices)
+                 ->icon('heroicons.academic-cap')
+                 ->withAttributes([
+                   'style'=>'background-color: #E6E6E6'
+                 ]),
+                ])->columnSpan(2),
+ 
+                Column::make([
+                 ValueMetric::make('Contratos totales')
+                     ->value($totalContratos)
+                     ->icon('heroicons.document-text')
+                     ->withAttributes([
+                         'style' => 'background-color: #E6E6E6'
+                     ]),
+             ])->columnSpan(2),
+ 
+             Column::make([
+                 ValueMetric::make('Pasantías totales')
+                     ->value($totalPasantias)
+                     ->icon('heroicons.book-open')
+                     ->withAttributes([
+                         'style' => 'background-color: #E6E6E6'
+                     ]),
+             ])->columnSpan(2),
+             Column::make([
+                 ValueMetric::make('Proyectos totales')
+                     ->value($totalProyecto)
+                     ->icon('heroicons.puzzle-piece')
+                     ->withAttributes([
+                         'style' => 'background-color: #E6E6E6'
+                     ]),
+             ])->columnSpan(2),
+             Column::make([
+                 ValueMetric::make('Monitorías totales')
+                     ->value($totalMonitorias)
+                     ->icon('heroicons.newspaper')
+                     ->withAttributes([
+                         'style' => 'background-color: #E6E6E6'
+                     ]),
+             ])->columnSpan(2),
+             Column::make([
+                 ValueMetric::make('Vinculos totales')
+                     ->value($totalVinculos)
+                     ->icon('heroicons.newspaper')
+                     ->withAttributes([
+                         'style' => 'background-color: #E6E6E6'
+                     ]),
+             ])->columnSpan(2)
+                
+             ]),
+        ];
+    }
 
     public function tdAttributes(): Closure
     {

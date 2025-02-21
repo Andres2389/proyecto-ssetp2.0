@@ -9,7 +9,6 @@ use MoonShine\MoonShine;
 use MoonShine\Menu\MenuGroup;
 use MoonShine\Menu\MenuItem;
 use App\MoonShine\Resources\BitacorasResource;
-use App\MoonShine\Resources\MoonShineUserResource;
 use MoonShine\Contracts\Resources\ResourceContract;
 use MoonShine\Menu\MenuElement;
 use MoonShine\Pages\Page;
@@ -40,8 +39,13 @@ class MoonShineServiceProvider extends MoonShineApplicationServiceProvider
     {
         return [
             
-                MenuItem::make('Administradores', new MoonShineUserResource(), 'heroicons.outline.users'),
-                MenuItem::make('Bitacoras', new BitacorasResource(),'heroicons.clipboard-document-check'),
+ 
+                MenuGroup::make('System', [
+                    MenuItem::make('Admins', new \Sweet1s\MoonshineRBAC\Resource\UserResource(), 'heroicons.outline.users'),
+                    MenuItem::make('Roles', new \Sweet1s\MoonshineRBAC\Resource\RoleResource(), 'heroicons.outline.shield-exclamation'),
+                    MenuItem::make('Permissions', new \Sweet1s\MoonshineRBAC\Resource\PermissionResource(), 'heroicons.outline.shield-exclamation'),
+                ], 'heroicons.outline.user-group'),
+                MenuItem::make('Etapa Productiva', new BitacorasResource(),'heroicons.clipboard-document-check'),
                 
             //MenuItem::make('Documentation', 'https://moonshine-laravel.com/docs')
                // ->badge(fn() => 'Check')
@@ -111,6 +115,8 @@ public function boot(): void
             ->errorBg('190, 10, 10', dark: false)
             ->errorText('255, 197, 197', dark: false)
             ->infoBg('38, 93, 205', dark: false)
+            ->tableRow('#0e8a17 ')
             ->infoText('179, 220, 255', dark: false);
+            
     }
 }

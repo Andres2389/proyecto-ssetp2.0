@@ -18,16 +18,14 @@ use MoonShine\Fields\Password;
 use MoonShine\Fields\PasswordRepeat;
 use MoonShine\Fields\Relationships\BelongsTo;
 use MoonShine\Fields\Text;
-//use MoonShine\Models\MoonshineUser;
+use MoonShine\Models\MoonshineUser;
 use MoonShine\Resources\ModelResource;
-use MoonShine\Permissions\Models\MoonshineUser;
 use MoonShine\Models\MoonshineUserRole;
-use MoonShine\Permissions\Traits\WithPermissions;
+
 
 #[Icon('heroicons.outline.users')]
 class MoonShineUserResource extends ModelResource
 {
-    use WithPermissions;
     
     public string $model = MoonshineUser::class;
 
@@ -36,10 +34,22 @@ class MoonShineUserResource extends ModelResource
     protected bool $columnSelection = true;
 
     public array $with = ['moonshineUserRole'];
+    
+    protected bool $isAsync = true;
 
     public function title(): string
     {
         return __('moonshine::ui.resource.admins_title');
+    }
+
+    public function redirectAfterSave(): string
+    {
+        return '/';
+    }
+    
+    public function redirectAfterDelete(): string
+    {
+        return '/';
     }
 
     public function fields(): array

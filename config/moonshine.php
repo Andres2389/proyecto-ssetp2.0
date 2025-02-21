@@ -4,8 +4,7 @@ use MoonShine\Exceptions\MoonShineNotFoundException;
 use MoonShine\Forms\LoginForm;
 use MoonShine\Http\Middleware\Authenticate;
 use MoonShine\Http\Middleware\SecurityHeadersMiddleware;
-//use MoonShine\Models\MoonshineUser;
-use MoonShine\Permissions\Models\MoonshineUser;
+use MoonShine\Models\MoonshineUser;
 use App\MoonShine\MoonShineLayout;
 use MoonShine\Pages\ProfilePage;
 
@@ -14,11 +13,11 @@ return [
     'namespace' => 'App\MoonShine',
 
     'title' => env('MOONSHINE_TITLE', 'ssetp'),
-    'logo' => 'vendor/moonshine/logo.svg',
-    'logo_small' => 'vendor/moonshine/logo.svg',
+    'logo' => 'vendor/moonshine/logoverde-small.svg',
+    'logo_small' => 'vendor/moonshine/logoverde-small.svg',
 
     'route' => [
-        'domain' => env('MOONSHINE_URL', ''),
+        'domain' => env('MOONSHINE_URL', 'www.sena-ssetp.com'),
         //'prefix' => env('MOONSHINE_ROUTE_PREFIX', 'admin'),
         'single_page_prefix' => 'page',
         'index' => 'moonshine.index',
@@ -87,7 +86,7 @@ return [
         'providers' => [
             'moonshine' => [
                 'driver' => 'eloquent',
-                'model' => MoonshineUser::class,
+                'model' => \App\Models\User::class,
             ],
         ],
         'pipelines' => [],

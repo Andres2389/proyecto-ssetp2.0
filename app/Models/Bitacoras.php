@@ -9,7 +9,10 @@ use App\Models\Instructores;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Bitacoras extends Model
+
 {
+
+    
     protected $fillable = [
         'numero_documento',
         'nombre',
@@ -49,8 +52,5 @@ class Bitacoras extends Model
     ];
 
     
-    /**
-     * Relación con Instructores
-     */
-    
+   
 }
